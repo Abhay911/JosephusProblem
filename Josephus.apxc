@@ -1,0 +1,42 @@
+public class JosephusProblemV2 { 
+    
+	public static void whereIsJosephus(Integer n) { 
+        if(n < 1) {
+            system.assert(false, 'There is NO Josephus.');
+        }
+        else {
+            List<Integer> circluarSoldierList = new List<Integer>();
+            Boolean doKillSoldier = false;
+            Integer josephusPosition = 0, soldierCount = n;
+            if(n > 1) {
+                for(Integer i=1; i<=n; i++) {
+                    circluarSoldierList.add(i);
+                }
+                for(Integer j=0; j<circluarSoldierList.size(); j++) {
+                    
+                    if(doKillSoldier && circluarSoldierList[j] != null) {
+                        circluarSoldierList[j] = null;
+                        soldierCount--;
+                        doKillSoldier = false;
+                    }
+                    if(circluarSoldierList[j] != null) {
+                        doKillSoldier = true;
+                    }
+                    if(j == (circluarSoldierList.size() -1) && soldierCount > 1) {
+                        j = -1;
+                    }
+                }
+                for(Integer k=0; k<circluarSoldierList.size(); k++) {
+                    if(circluarSoldierList[k] != null) {
+                        josephusPosition = circluarSoldierList[k];
+                        break;
+                    }
+                }
+                system.assert(false, 'The Soldier standing on the position: ' + josephusPosition + ' is Josephus.');
+            }
+            else {
+                system.assert(false, 'The Soldier standing on the position: ' + n + ' is Josephus.');
+            }
+        }  
+    }
+}
